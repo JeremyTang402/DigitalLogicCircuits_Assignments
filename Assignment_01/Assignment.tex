@@ -1,0 +1,306 @@
+\documentclass[10pt, a4paper]{article}
+
+% --- 基础宏包 ---
+\usepackage[margin=2.5cm]{geometry} % 设置页面边距
+\usepackage{amsmath, amssymb}       % 数学公式支持
+\usepackage{fancyhdr}               % 页眉页脚支持
+\usepackage{ctex}
+\usepackage{enumitem}
+\usepackage{array}
+
+\setlist[enumerate]{label=(\arabic*), nosep}
+
+% --- 页眉页脚设置 ---
+\pagestyle{fancy}
+\fancyhf{}							% 清空默认的页眉页脚
+\lhead{数字逻辑电路}                 % 左侧页眉
+\rhead{19Q24119 汤今越}              % 右侧页眉
+\cfoot{第 \thepage\ 页}              % 底部居中页码
+\setlength{\headheight}{15pt}       % 调整页眉高度以避免警告
+
+% --- 自定义题目与解答命令 ---
+% #1: 题号, #2: 题目内容 (\kaishu 切换为楷体)
+\newcommand{\question}[2]{
+    \vspace{2ex}\noindent\textbf{#1}\ {\kaishu #2} \par\vspace{1ex}
+}
+% #1: 解答内容 (\songti 切换为宋体)
+\newcommand{\solution}[1]{
+    \noindent\textbf{解：}{\songti #1} \par\vspace{3ex}
+}
+
+\begin{document}
+
+% ================= 表头信息 =================
+\thispagestyle{plain}
+\begin{center}
+	\hrule
+	\vspace{.4cm}
+	{\textbf { \large 数字逻辑电路\ 作业}}
+\end{center}
+{ \textbf{姓名：}}汤今越 \hspace{\fill} \textbf{日期:} 2026-03-13 \\
+{ \textbf{学号：}}19Q24119 \hspace{\fill} \textbf{作业编号:} 01 \\
+	\hrule
+\vspace{3ex}
+% ============================================
+
+% ================= 作业内容 =================
+
+\question{2.1}{
+将下列二进制数转换为十进制数。
+\begin{enumerate}
+	\item \textbf{1011.101}
+	\item \textbf{1110111.01}
+	\item \textbf{1010.11}
+	\item \textbf{1010010.101}
+\end{enumerate}
+}
+
+\solution{
+\begin{enumerate}
+	\item $ (\textbf{1011.101})_2 = 1\times2^3 + 0\times2^2 + 1\times2^1 + 1\times2^0 + 1\times2^{-1} + 0\times2^{-2} + 1\times2^{-3} \\ = 8 + 0 + 2 + 1 + 0.5 + 0 + 0.125 = 11.625 $
+    \item $ (\textbf{1110111.01})_2 = 1\times2^6 + 1\times2^5 + 1\times2^4 + 0\times2^3 + 1\times2^2 + 1\times2^1 + 1\times2^0 + 0\times2^{-1} + 1\times2^{-2} \\
+        = 64 + 32 + 16 + 0 + 4 + 2 + 1 + 0 + 0.25 = 119.25 $
+    \item $ (\textbf{1010.11})_2 = 1\times2^3 + 0\times2^2 + 1\times2^1 + 0\times2^0 + 1\times2^{-1} + 1\times2^{-2} \\ = 8 + 0 + 2 + 0 + 0.5 + 0.25 = 10.75 $
+    \item $ (\textbf{1010010.101})_2 = 1\times2^6 + 0\times2^5 + 1\times2^4 + 0\times2^3 + 0\times2^2 + 1\times2^1 + 0\times2^0 + 1\times2^{-1} + 0\times2^{-2} + 1\times2^{-3} \\ = 64 + 0 + 16 + 0 + 0 + 2 + 0 + 0.5 + 0 + 0.125 = 82.625\ $
+\end{enumerate}
+}
+
+
+\question{2.2}{
+将下列十进制数转换为二进制数。
+\begin{enumerate}
+	\item 52.75
+	\item 11.125
+	\item 127.25
+	\item 75.32
+\end{enumerate}
+}
+
+\solution{
+\begin{enumerate}
+    \item 52.75 \\
+    \begin{minipage}[t]{0.48\textwidth}
+        整数部分 52 转换：\\
+        \begin{tabular}{|c|c|}
+            \hline
+            被除数 & 余数 \\ \hline
+            52 & 0 \\ \hline
+            26 & 0 \\ \hline
+            13 & 1 \\ \hline
+            6  & 0 \\ \hline
+            3  & 1 \\ \hline
+            1  & 1 \\ \hline
+        \end{tabular}\\
+        从下往上读取余数，得 $(52)_{10}=(\textbf{110100})_2$。
+    \end{minipage}
+    \hfill
+    \begin{minipage}[t]{0.48\textwidth}
+        小数部分 0.75 转换：\\
+        \begin{tabular}{|c|c|}
+            \hline
+            小数部分 $\times 2$ & 整数部分 \\ \hline
+            1.5 & 1 \\ \hline
+            1.0 & 1 \\ \hline
+        \end{tabular}\\
+        从上往下读取整数部分，得 $(0.75)_{10}=(\textbf{0.11})_2$。
+    \end{minipage}
+    
+    \framebox{合并得 $(52.75)_{10}=(\textbf{110100.11})_2$。}
+    
+    \item 11.125 \\
+    \begin{minipage}[t]{0.48\textwidth}
+		整数部分 11 转换：\\
+        \begin{tabular}{|c|c|}
+            \hline
+            被除数 & 余数 \\ \hline
+            11 & 1 \\ \hline
+            5  & 1 \\ \hline
+            2  & 0 \\ \hline
+            1  & 1 \\ \hline
+        \end{tabular}\\
+        从下往上读取余数，得 $(11)_{10}=(\textbf{1011})_2$。
+    \end{minipage}
+    \hfill
+    \begin{minipage}[t]{0.48\textwidth}
+        小数部分 0.125 转换：\\
+        \begin{tabular}{|c|c|}
+            \hline
+            小数部分 $\times 2$ & 整数部分 \\ \hline
+            0.25 & 0 \\ \hline
+            0.5  & 0 \\ \hline
+            1.0  & 1 \\ \hline
+        \end{tabular}\\
+        从上往下读取整数部分，得 $(0.125)_{10}=(\textbf{0.001})_2$。
+    \end{minipage}
+    
+    \framebox{合并得 $(11.125)_{10}=(\textbf{1011.001})_2$。}
+    
+    \item 127.25 \\
+    \begin{minipage}[t]{0.48\textwidth}
+        整数部分 127 转换：\\
+        \begin{tabular}{|c|c|}
+            \hline
+            被除数 & 余数 \\ \hline
+            127 & 1 \\ \hline
+            63  & 1 \\ \hline
+            31  & 1 \\ \hline
+            15  & 1 \\ \hline
+            7   & 1 \\ \hline
+            3   & 1 \\ \hline
+            1   & 1 \\ \hline
+        \end{tabular}\\
+        从下往上读取余数，得 $(127)_{10}=(\textbf{1111111})_2$。
+    \end{minipage}
+    \hfill
+    \begin{minipage}[t]{0.48\textwidth}
+        小数部分 0.25 转换：\\
+        \begin{tabular}{|c|c|}
+            \hline
+            小数部分 $\times 2$ & 整数部分 \\ \hline
+            0.5 & 0 \\ \hline
+            1.0 & 1 \\ \hline
+        \end{tabular}\\
+        从上往下读取整数部分，得 $(0.25)_{10}=(\textbf{0.01})_2$。
+    \end{minipage}
+    
+    \framebox{合并得 $(127.25)_{10}=(\textbf{1111111.01})_2$。}
+    
+    \item 75.32 \\
+    \begin{minipage}[t]{0.48\textwidth}
+        整数部分 75 转换：\\
+        \begin{tabular}{|c|c|}
+            \hline
+            被除数 & 余数 \\ \hline
+            75 & 1 \\ \hline
+            37 & 1 \\ \hline
+            18 & 0 \\ \hline
+            9  & 1 \\ \hline
+            4  & 0 \\ \hline
+            2  & 0 \\ \hline
+            1  & 1 \\ \hline
+        \end{tabular}\\
+        从下往上读取余数，得 $(75)_{10}=(\textbf{1001011})_2$。
+    \end{minipage}
+    \hfill
+    \begin{minipage}[t]{0.48\textwidth}
+        小数部分 0.32 转换（保留小数点后8位）：\\
+        \begin{tabular}{|c|c|}
+            \hline
+            小数部分 $\times 2$ & 整数部分 \\ \hline
+            0.64 & 0 \\ \hline
+            1.28 & 1 \\ \hline
+            0.56 & 0 \\ \hline
+            1.12 & 1 \\ \hline
+            0.24 & 0 \\ \hline
+            0.48 & 0 \\ \hline
+            0.96 & 0 \\ \hline
+            1.92 & 1 \\ \hline
+        \end{tabular}\\
+        从上往下读取整数部分，得 \\ $(0.32)_{10}\approx(\textbf{0.01010001})_2$。
+    \end{minipage}
+    
+    \framebox{合并得 $(75.32)_{10}\approx(\textbf{1001011.01010001})_2$。}
+\end{enumerate}
+}
+
+\question{2.4}{
+将下列二进制数转换为八进制数。
+\begin{enumerate}
+	\item \textbf{10110.01}
+	\item \textbf{1110101.01}
+	\item \textbf{11010.011}
+	\item \textbf{10100.0101}
+\end{enumerate}
+}
+
+\solution{
+\begin{enumerate}
+	\item $ (\textbf{10110.01})_2 = (\textbf{010\ 110.010})_2 = (26.2)_8 $
+    \item $ (\textbf{1110101.01})_2 = (\textbf{001\ 110\ 101.010})_2 = (165.2)_8 $
+    \item $ (\textbf{11010.011})_2 = (\textbf{011\ 010.011})_2 = (32.3)_8 $
+    \item $ (\textbf{10100.0101})_2 = (\textbf{010\ 100.010\ 100})_2 = (24.24)_8$
+\end{enumerate}
+}
+
+\question{2.7}{
+将下列十六进制数转换为二进制数。
+\begin{enumerate}
+	\item 1F3.2
+	\item BA02.35
+	\item E369.FE
+	\item 1C8.01
+\end{enumerate}
+}
+
+\solution{
+\begin{enumerate}
+    \item $ (\mathrm{1F3.2})_{16} = (\textbf{0001\ 1111\ 0011.0010})_2 $
+    \item $ (\mathrm{BA02.35})_{16} = (\textbf{1011\ 1010\ 0000\ 0010.0011\ 0101})_2 $
+    \item $ (\mathrm{E369.FE})_{16} = (\textbf{1110\ 0011\ 0110\ 1001.1111\ 1110})_2 $
+    \item $ (\mathrm{1C8.01})_{16} = (\textbf{0001\ 1100\ 1000.0000\ 0001})_2 $
+\end{enumerate}
+}
+
+\question{2.9}{
+将下列十六进制数转换为八进制数。
+\begin{enumerate}
+    \item 2F7.3A
+    \item AB2.05
+    \item F328.106
+    \item 1C8.EF
+\end{enumerate}
+}
+
+\solution{
+\begin{enumerate}
+    \item $ (\mathrm{2F7.3A})_{16} = (\textbf{0010\ 1111\ 0111.0011\ 1010})_2 = (\textbf{001\ 011\ 110\ 111.001\ 110\ 100})_2 = (1367.164)_8 $
+    \item $ (\mathrm{AB2.05})_{16} = (\textbf{1010\ 1011\ 0010.0000\ 0101})_2 = (\textbf{101\ 010\ 110\ 010.000\ 001\ 010})_2 = (5262.012)_8 $
+    \item $ (\mathrm{F328.106})_{16} = (\textbf{1111\ 0011\ 0010\ 1000.0001\ 0000\ 0110})_2 \\ = (\textbf{001\ 111\ 001\ 100\ 101\ 000.000\ 100\ 000\ 110})_2 = (171450.0406)_8 $
+    \item $ (\mathrm{1C8.EF}) = (\textbf{0001\ 1100\ 1000.1110\ 1111})_2 = (\textbf{111\ 001\ 000.111\ 011\ 110})_2 = (710.736)_8 $
+\end{enumerate}
+}
+
+\question{2.10}{
+写出下列二进制数的8位原码。
+\begin{enumerate}
+    \item \textbf{10101}
+    \item \textbf{-10101}
+    \item \textbf{-1101}
+    \item \textbf{101101}
+    \item \textbf{0}
+\end{enumerate}
+}
+
+\solution{
+\begin{enumerate}
+    \item $ N_1 = \textbf{1\ 0101}, [N_1]_\text{原} = \textbf{0001\ 0101} $
+    \item $ N_2 = \textbf{-1\ 0101}, [N_2]_\text{原} = \textbf{1001\ 0101} $
+    \item $ N_3 = \textbf{-1101}, [N_3]_\text{原} = \textbf{1000\ 1101} $
+    \item $ N_4 = \textbf{10\ 1101}, [N_4]_\text{原} = \textbf{0010\ 1101} $
+    \item $ [+0]_\text{原} = \textbf{0000\ 0000}, [-0]_\text{原} = \textbf{1000\ 0000} $
+\end{enumerate}
+}
+
+\question{2.12}{
+写出下列二进制数的8位补码，并将补码进行符号扩展求得16位的补码。
+\begin{enumerate}
+    \item \textbf{101011}
+    \item \textbf{-101001}
+    \item \textbf{-111111}
+    \item \textbf{111111}
+    \item \textbf{0}
+\end{enumerate}
+}
+
+\solution{
+\begin{enumerate}
+    \item $[\textbf{10\ 1011}]_\text{补} = \textbf{0010\ 1011}$，扩展后为 $\textbf{0000\ 0000\ 0010\ 1011}$。
+    \item $[\textbf{-10\ 1001}]_\text{补} = \textbf{1101\ 0111}$，扩展后为 $\textbf{1111\ 1111\ 1101\ 0111}$。
+    \item $[\textbf{-11\ 1111}]_\text{补} = \textbf{1100\ 0001}$，扩展后为 $\textbf{1111\ 1111\ 1100\ 0001}$。
+    \item $[\textbf{11\ 1111}]_\text{补} = \textbf{0011\ 1111}$，扩展后为 $\textbf{0000\ 0000\ 0011\ 1111}$。
+    \item $[\textbf{0}]_\text{补} = \textbf{0000\ 0000}$ 或 $\textbf{1000\ 0000}$，扩展后为 $\textbf{0000\ 0000\ 0000\ 0000}$ 或 $ \textbf{1111\ 1111\ 1000\ 0000}$。
+\end{enumerate}
+}
+% ============================================
+
+\end{document}
