@@ -1,0 +1,205 @@
+\documentclass[10pt, a4paper]{article}
+
+% --- 基础宏包 ---
+\usepackage[margin=2.5cm]{geometry} % 设置页面边距
+\usepackage{amsmath, amssymb}       % 数学公式支持
+\usepackage{fancyhdr}               % 页眉页脚支持
+\usepackage{ctex}
+\usepackage{enumitem}
+\usepackage{array}
+
+\setlist[enumerate]{label=(\arabic*), nosep}
+\setlist[itemize]{nosep}
+
+% --- 页眉页脚设置 ---
+\pagestyle{fancy}
+\fancyhf{}							% 清空默认的页眉页脚
+\lhead{数字逻辑电路}                 % 左侧页眉
+\rhead{19Q24119 汤今越}              % 右侧页眉
+\cfoot{第 \thepage\ 页}              % 底部居中页码
+\setlength{\headheight}{15pt}       % 调整页眉高度以避免警告
+
+% --- 自定义题目与解答命令 ---
+% #1: 题号, #2: 题目内容 (\kaishu 切换为楷体)
+\newcommand{\question}[2]{
+    \vspace{2ex}\noindent\textbf{#1}\ {\kaishu #2} \par\vspace{1ex}
+}
+% #1: 解答内容 (\songti 切换为宋体)
+\newcommand{\solution}[1]{
+    \noindent\textbf{解：}{\songti #1} \par\vspace{3ex}
+}
+
+\begin{document}
+
+% ================= 表头信息 =================
+\thispagestyle{plain}
+\begin{center}
+	\hrule
+	\vspace{.4cm}
+	{\textbf { \large 数字逻辑电路\ 作业}}
+\end{center}
+{ \textbf{姓名：}}汤今越 \hspace{\fill} \textbf{日期:} 2026-03-19 \\
+{ \textbf{学号：}}19Q24119 \hspace{\fill} \textbf{作业编号:} 02 \\
+	\hrule
+\vspace{3ex}
+% ============================================
+
+% ================= 作业内容 =================
+
+\question{2.21}{
+用8421BCD码表示下列各数。
+\begin{enumerate}
+	\item 751
+	\item 122
+	\item 946
+	\item 512
+\end{enumerate}
+}
+
+\solution{
+\begin{enumerate}
+	\item 751 = $ (\textbf{0111 0101 0001})_{NBCD} $
+	\item 122 = $ (\textbf{0001 0010 0010})_{NBCD} $
+	\item 946 = $ (\textbf{1001 0100 0110})_{NBCD} $
+	\item 512 = $ (\textbf{0101 0001 0010})_{NBCD} $
+\end{enumerate}
+}
+
+\question{2.22}{
+用余3BCD码表示下列各数。
+\begin{enumerate}
+	\item 763
+	\item 139
+	\item 896
+	\item 502
+\end{enumerate}
+}
+
+\solution{
+\begin{enumerate}
+	\item 763 = $ (\textbf{1010 1001 0110})_{EX-3} $
+	\item 139 = $ (\textbf{0100 0110 1100})_{EX-3} $
+	\item 896 = $ (\textbf{1011 1100 1001})_{EX-3} $
+	\item 502 = $ (\textbf{1000 0011 0101})_{EX-3} $
+\end{enumerate}
+}
+
+\question{2.24}{
+将下列余3BCD码表示的数还原成十进制数。
+\begin{enumerate}
+	\item $ (\textbf{0101 1100 1000})_{EX-3} $
+	\item $ (\textbf{1010 0011 0110})_{EX-3} $
+	\item $ (\textbf{1000 0101})_{EX-3} $
+\end{enumerate}
+}
+
+\solution{
+\begin{enumerate}
+	\item $ (\textbf{101 1100 1000})_{EX-3} $ = 295
+	\item $ (\textbf{1010 0011 0110})_{EX-3} $ = 703
+	\item $ (\textbf{1000 0101})_{EX-3} $ = 52
+\end{enumerate}
+}
+
+\question{3.1}{
+写出下述逻辑问题的真值表，并写出逻辑表达式。
+\begin{enumerate}
+	\item 有3个输入信号 $A$、$B$、$C$，当3个输入信号中不多于一个输入为\textbf{1}时，输出信号$F$为\textbf{1}，其余情况下，输出$F$为\textbf{0}；
+	\item 有3个输入信号 $A$、$B$、$C$，当3个输入信号中有偶数个输入为\textbf{1}时，输出信号$F$为\textbf{1}，其余情况下，输出$F$为\textbf{0}。
+\end{enumerate}
+}
+
+\solution{
+\begin{enumerate}
+	\begin{minipage}[t]{0.48\textwidth}
+	\item 
+	$
+	\begin{array}{ccc|c}
+		A & B & C & F_1 \\ \hline
+		0 & 0 & 0 & 1 \\
+		0 & 0 & 1 & 1 \\
+		0 & 1 & 0 & 1 \\
+		0 & 1 & 1 & 0 \\
+		1 & 0 & 0 & 1 \\
+		1 & 0 & 1 & 0 \\
+		1 & 1 & 0 & 0 \\
+		1 & 1 & 1 & 0 \\
+	\end{array}
+	$ \\
+	$ F_1 = \overline{A}\,\overline{B}\,\overline{C} + \overline{A}\,\overline{B}C + \overline{A}B\overline{C} + A\overline{B}\,\overline{C} $
+	\end{minipage}
+	\hfill
+	\begin{minipage}[t]{0.48\textwidth}
+	\item 
+	$
+	\begin{array}{ccc|c}
+		A & B & C & F_2 \\ \hline
+		0 & 0 & 0 & 1 \\
+		0 & 0 & 1 & 0 \\
+		0 & 1 & 0 & 0 \\
+		0 & 1 & 1 & 1 \\
+		1 & 0 & 0 & 0 \\
+		1 & 0 & 1 & 1 \\
+		1 & 1 & 0 & 1 \\
+		1 & 1 & 1 & 0 \\
+	\end{array}
+	$ \\
+	$ F_2 = \overline{A}\,\overline{B}\,\overline{C} + \overline{A}BC + A\overline{B}C + AB\overline{C} $
+	\end{minipage}
+\end{enumerate}
+}
+
+\question{3.10}{
+直接写出下列各函数的反函数表达式及对偶函数表达式。
+\begin{enumerate}
+	\item $ F = (A+B)(B+C)(C+D) $
+	\item $ F = \overline{A}BC + B\overline{C}\,\overline{D} + B\overline{C} + D $
+	\item $ F = [(A\overline{C} + B)D + BE]C $
+	\item $ F = \overline{A + \overline{BC} + \overline{B}C + \overline{A}} $
+	\item $ F = [\overline{A}(C + B)][A\overline{C}D + (\overline{C} + B)D] $
+	\item $ F = \overline{AB} + CD + \overline{AD} + \overline{\overline{B} + \overline{A}E + \overline{D + E}} $
+\end{enumerate}
+}
+
+\solution{
+\begin{enumerate}
+    \item $F = (A+B)(B+C)(C+D)$
+    \begin{itemize}
+        \item 反函数：$\overline{F} = \overline{A}\,\overline{B} + \overline{B}\,\overline{C} + \overline{C}\,\overline{D}$
+        \item 对偶式：$F^D = AB + BC + CD$
+    \end{itemize}
+
+    \item $F = \overline{A}BC + B\overline{C}\,\overline{D} + B\overline{C} + D$
+    \begin{itemize}
+        \item 反函数：$\overline{F} = (A + \overline{B} + \overline{C})(\overline{B} + C + D)(\overline{B} + C)\overline{D}$
+        \item 对偶式：$F^D = (\overline{A} + B + C)(B + \overline{C} + \overline{D})(B + \overline{C})D$
+    \end{itemize}
+
+    \item $F = [(A\overline{C} + B)D + BE]C$
+    \begin{itemize}
+        \item 反函数：$\overline{F} = \{[(\overline{A} + C)\overline{B} + \overline{D}](\overline{B} + \overline{E})\} + \overline{C}$
+        \item 对偶式：$F^D = \{[(A + \overline{C})B + D](B + E)\} + C$
+    \end{itemize}
+
+    \item $F = \overline{A + \overline{BC} + \overline{B}C + \overline{A}}$
+    \begin{itemize}
+        \item 反函数：$\overline{F} = A + (\overline{B} + \overline{C}) + B\overline{C} + A$
+        \item 对偶式：$F^D = \overline{A \cdot (\overline{B} + \overline{C}) \cdot (\overline{B} + C) \cdot \overline{A}}$
+    \end{itemize}
+
+    \item $F = [\overline{A}(C + B)][A\overline{C}D + (\overline{C} + B)D]$
+    \begin{itemize}
+        \item 反函数：$\overline{F} = (A + \overline{C}\,\overline{B}) + \{(\overline{A} + C + \overline{D})[(C\overline{B}) + \overline{D}]\}$
+        \item 对偶式：$F^D = [\overline{A} + CB] + [(A + \overline{C} + D)(\overline{C}B + D)]$
+    \end{itemize}
+
+    \item $F = \overline{AB} + CD + \overline{AD} + \overline{\overline{B} + \overline{A}E + \overline{D + E}}$
+    \begin{itemize}
+        \item 反函数：$\overline{F} = (A + B)(\overline{C} + \overline{D})(A + D)[B(A + \overline{E})(D + E)]$
+        \item 对偶式：$F^D = (\overline{A} + \overline{B})(C + D)(\overline{A} + \overline{D}) \cdot [\overline{\overline{B} \cdot (\overline{A} + E) \cdot \overline{DE}}]$
+    \end{itemize}
+\end{enumerate}
+}
+% ============================================
+
+\end{document}
